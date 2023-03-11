@@ -18,6 +18,7 @@ public class GenerateParenthesis {
         return res;
     }
     private void dfs(int n,int leftNum,int rightNum,StringBuilder str) {
+        // 这个leftNum 和 rightNum应该放到最外面比较合适
         if (str.length() == n * 2) {
             set.add(new String(str));
             return;
