@@ -1,4 +1,4 @@
-package codetop_byte;
+package codetop_byte.q0418;
 
 import java.util.Scanner;
 
