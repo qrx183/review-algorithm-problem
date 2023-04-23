@@ -1,4 +1,4 @@
-package codetop_byte.q0417;
+package codetop_byte;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,6 +49,6 @@ public class TestThread {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-
+        ThreadLocal<Integer> tt = new ThreadLocal<>();
     }
 }
