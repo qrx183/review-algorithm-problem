@@ -1,6 +1,7 @@
 package codetop_byte.q0417;
 
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
@@ -36,7 +37,12 @@ public class TestThread {
         AtomicInteger atomicInteger = new AtomicInteger(10);
         int a = atomicInteger.addAndGet(1);
         Timer timer = new Timer();
-        timer.schedule();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("hh");
+            }
+        },100);
         System.out.println(a);
 //        try {
 //            semaphore.acquire();
