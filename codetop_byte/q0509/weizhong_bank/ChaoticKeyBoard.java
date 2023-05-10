@@ -51,3 +51,12 @@ public class ChaoticKeyBoard {
         }
     }
 }
+
+interface A {
+    public abstract int hello();
+    static int a = 1;
+    static int func() {
+        return 1;
+    }
+
+}
