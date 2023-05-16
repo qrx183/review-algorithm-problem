@@ -64,7 +64,7 @@ public class MinRoad {
                 return o1[0]-o2[0];
             }
         });
-        p.offer(new int[]{s,0});
+        p.offer(new int[]{0,s});
         Arrays.fill(dis,100010);
         dis[s] = 0;
         while(!p.isEmpty()) {
