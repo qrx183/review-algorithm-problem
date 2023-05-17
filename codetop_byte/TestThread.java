@@ -1,5 +1,6 @@
 package codetop_byte;
 
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.*;
@@ -23,7 +24,9 @@ public class TestThread {
     class B{
        int a;
     }
-    public static void main3(String[] args) throws InterruptedException {
+
+    public static void main(String[] args) throws InterruptedException {
+
         Thread.sleep(1000);
         Thread t = new Thread(() -> {
             threadLocal.set("qiurui");
