@@ -25,6 +25,6 @@ public class MinOperations {
         }
     }
     private static boolean check(String s,int cnt,int a,int b) {
-
+        return true;
     }
 }
