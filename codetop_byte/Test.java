@@ -1,66 +1,69 @@
 package codetop_byte;
 
+import java.io.*;
+import java.lang.reflect.Constructor;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
-public class Test {
-    private static Random random = new Random();
+public class Test implements Cloneable,Serializable{
+    A a;
+    int c = 20;
+    String name = "hh";
 
-    public static void main(String[] args) {
+    @Override
+    protected Test clone() throws CloneNotSupportedException {
+        Test cloneTest = null;
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject(this);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            cloneTest = (Test)objectInputStream.readObject();
 
-    }
-    public static void main1(String[] args) {
-        // 当前毫秒时间戳
-        long startMillis = System.currentTimeMillis();
-        // 持续运行毫秒数; 可根据需要进行修改
-        long timeoutMillis = TimeUnit.SECONDS.toMillis(1);
-        // 结束时间戳
-        long endMillis = startMillis + timeoutMillis;
-        LongAdder counter = new LongAdder();
-        System.out.println("正在执行...");
-        // 缓存一部分对象; 进入老年代
-        int cacheSize = 2000;
-        Object[] cachedGarbage = new Object[cacheSize];
-        // 在此时间范围内,持续循环
-        while (System.currentTimeMillis() < endMillis) {
-            // 生成垃圾对象
-            Object garbage = generateGarbage(100 * 1024);
-            counter.increment();
-            int randomIndex = random.nextInt(2 * cacheSize);
-            if (randomIndex < cacheSize) {
-                cachedGarbage[randomIndex] = garbage;
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println("执行结束!共生成对象次数:" + counter.longValue());
-    }
-
-    // 生成对象
-    private static Object generateGarbage(int max) {
-        int randomSize = random.nextInt(max);
-        int type = randomSize % 4;
-        Object result = null;
-        switch (type) {
-            case 0:
-                result = new int[randomSize];
-                break;
-            case 1:
-                result = new byte[randomSize];
-                break;
-            case 2:
-                result = new double[randomSize];
-                break;
-            default:
-                StringBuilder builder = new StringBuilder();
-                String randomString = "randomString-Anything";
-                while (builder.length() < randomSize) {
-                    builder.append(randomString);
-                    builder.append(max);
-                    builder.append(randomSize);
-                }
-                result = builder.toString();
-                break;
-        }
-        return result;
+        return cloneTest;
     }
 }
+class A implements Serializable,Cloneable{
+    int a = 10;
+    int b = 20;
+}
+
+
+
+//    private static final Object ob = new Object();
+//    private volatile static Test t;
+//    private Test(){
+//        if(t != null) {
+//            throw new RuntimeException("该类已经被实例化,请勿再实例");
+//        }
+//    }
+//    private static Test getInstance() {
+//        if(t == null) {
+//            synchronized (ob){
+//                if(t == null) {
+//                    t = new Test();
+//                }
+//            }
+//        }
+//        return t;
+//    }
+//    @org.junit.jupiter.api.Test
+//    public void show() {
+//        Test t = Test.getInstance();
+//        Class objClass = Test.class;
+//        System.out.println("t:"+t);
+//        try {
+//            Constructor constructor = objClass.getDeclaredConstructor();
+//            constructor.setAccessible(true);
+//            Test newT = (Test)constructor.newInstance();
+//            System.out.println("newT:"+newT);
+//            System.out.println(t == newT);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }

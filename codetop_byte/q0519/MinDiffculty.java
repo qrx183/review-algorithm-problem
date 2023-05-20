@@ -3,6 +3,7 @@ package codetop_byte.q0519;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class MinDiffculty {
     public int minDifficulty(int[] jobDifficulty, int d) {
