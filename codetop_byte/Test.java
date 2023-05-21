@@ -2,7 +2,9 @@ package codetop_byte;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
@@ -27,8 +29,14 @@ public class Test implements Cloneable,Serializable{
         }
         return cloneTest;
     }
+
+    public static void main(String[] args) {
+        Map<Integer,Integer> map = new ConcurrentHashMap<>();
+    }
 }
-class A implements Serializable,Cloneable{
+
+class A implements Serializable {
+
     int a = 10;
     int b = 20;
 }

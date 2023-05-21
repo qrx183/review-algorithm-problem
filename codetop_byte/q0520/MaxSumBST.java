@@ -1,5 +1,7 @@
 package codetop_byte.q0520;
 
+import org.junit.jupiter.api.Test;
+
 public class MaxSumBST {
     static class TreeNode{
         TreeNode left;
@@ -42,4 +44,5 @@ public class MaxSumBST {
             return new int[]{0,0,0,0};
         }
     }
+
 }

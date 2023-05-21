@@ -25,23 +25,27 @@ public class TestThread {
        int a;
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
+        ReentrantLock reentrantLock = new ReentrantLock(true);
+        reentrantLock.tryLock();
+        Thread t = new Thread(()->{
+           while(true) {
+               try {
+                   Thread.sleep(1000);
+               } catch (InterruptedException e) {
+                   System.out.println("aa");
+                   Thread.currentThread().interrupt();
+               }
 
-        Thread.sleep(1000);
-        Thread t = new Thread(() -> {
-            threadLocal.set("qiurui");
-            String ans = threadLocal.get();
-            System.out.println(ans + Thread.currentThread().getName());
-        });
-        Thread t2 = new Thread(() -> {
-            String ans = threadLocal.get();
-            System.out.println(ans + Thread.currentThread().getName());
+           }
         });
         t.start();
-        t2.start();
-        t.join();
-        t2.join();
-        threadLocal.remove();
+        t.interrupt();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main2(String[] args) throws Exception {
