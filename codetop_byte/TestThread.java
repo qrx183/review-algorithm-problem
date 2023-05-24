@@ -96,7 +96,7 @@ public class TestThread {
     }
 
     public static void main(String[] args) {
-        new Service1().process("");
+
 
     }
 
