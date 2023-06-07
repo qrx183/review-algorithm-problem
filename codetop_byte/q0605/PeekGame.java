@@ -31,7 +31,8 @@ public class PeekGame {
         }
         int res = Integer.MAX_VALUE;
         for(int i = 0; i < n; i++) {
-            // 这里虽然有的分割点得到的并不是准确值，但是对于得出异常结果的分割点，其实也可以通过异常点的左右相邻点得出正确结果
+            // 这里要考虑一种特殊的情况：如果左右两侧都需要删除分割点的话就不需要+1了
+            // 比如： 1 2 5 3 4 2 1,对于3分割点，其实只需要删除1次即可，而不是7+1-3-3=2
             res = Math.min(res,n+1-lMins[i]-rMins[i]);
         }
         System.out.println(res);
