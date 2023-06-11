@@ -2,6 +2,7 @@ package codetop_byte.q0608;
 
 import java.util.Scanner;
 
+
 public class SmoothedValue {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -11,6 +12,7 @@ public class SmoothedValue {
         for(int i = 0; i < n; i++) {
             arr[i] = i+1;
         }
+
         int tmp = arr[1];
         arr[1] = arr[k];
         arr[k] = tmp;
